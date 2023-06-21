@@ -55,6 +55,7 @@ CREATE TABLE cr_address_person
     person_id         int                              NOT NULL,
     start_date        date                             NOT NULL,
     end_date          date,
+    temporal boolean DEFAULT false,
     CONSTRAINT pk_cr_address_person_person_address_id PRIMARY KEY (person_address_id),
     CONSTRAINT fk_cr_address_person_address_id FOREIGN KEY (address_id)
         REFERENCES cr_address (address_id),
@@ -73,10 +74,10 @@ INSERT INTO cr_address(district_code, street_code, building, extension, apartmen
 
 INSERT INTO cr_person(sur_name, given_name, patronymic, date_of_birth, passport_seria, passport_number,
                       passport_date, certificate_number, certificate_date) VALUES
-('Alex', 'Tums', ' ', '1978-01-27', '4004', '427593', '2003-06-01', null, null),
-('Mouse', 'Tums', ' ', '1976-04-24', '4002', '123456', '2022-04-01', null, null),
-('Nika', 'Tums', ' ', '2020-03-05', null, null, null, '11121314', '2020-08-01'),
-('Max', 'Tums', ' ', '2024-12-13', null, null, null, '41312111', '2025-01-21');
+('Pyshniak', 'Aleksandr', ' ', '1978-01-27', '4004', '427593', '2003-06-01', null, null),
+('Pyshniak', 'Marina', ' ', '1976-04-24', '4002', '123456', '2022-04-01', null, null),
+('Pyshniak', 'Nika', ' ', '2020-03-05', null, null, null, '11121314', '2020-08-01'),
+('Pyshniak', 'Max', ' ', '2024-12-13', null, null, null, '41312111', '2025-01-21');
 
 INSERT INTO cr_address_person (address_id, person_id, start_date, end_date) VALUES
 (1, 1, '2024-06-01', null),

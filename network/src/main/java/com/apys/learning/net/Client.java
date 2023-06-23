@@ -2,30 +2,45 @@ package com.apys.learning.net;
 
 import java.io.*;
 import java.net.Socket;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Client {
     public static void main(String[] args) throws IOException {
-        sendRequest();
+        for(int i = 0; i < 500; i++) {
+            SimpleClass sc = new SimpleClass();
+            sc.start();
+        }
     }
 
-    private static void sendRequest() throws IOException {
-        Socket socket = new Socket("127.0.0.1", 25225);
+}
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+class SimpleClass extends Thread {
+    @Override
+    public void run() {
+        try {
+            System.out.println("Started : " + LocalDateTime.now());
+            Socket socket = new Socket("127.0.0.1", 25225);
 
-        String sb = "Alex";
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-        bw.write(sb);
-        bw.newLine();
-        bw.flush();
+            String sb = "Alex";
 
-        String answer = br.readLine();
-        System.out.println("Client got answer from server : " + answer);
+            bw.write(sb);
+            bw.newLine();
+            bw.flush();
 
-        br.close();
-        bw.close();
+            String answer = br.readLine();
+            System.out.println("Client got answer from server : " + answer);
 
-        socket.close();
+            br.close();
+            bw.close();
+
+            socket.close();
+            System.out.println("Finished : " + LocalDateTime.now());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

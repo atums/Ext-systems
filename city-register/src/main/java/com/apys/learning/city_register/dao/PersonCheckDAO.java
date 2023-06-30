@@ -21,6 +21,25 @@ public class PersonCheckDAO {
                     "AND a.street_code = ? " +
                     "AND UPPER(a.building) = UPPER(?) ";
 
+        private ConnectionBuilder connectionBuilder;
+
+    public void setConnectionBuilder(ConnectionBuilder connectionBuilder) {
+        this.connectionBuilder = connectionBuilder;
+    }
+//    public PersonCheckDAO() {
+//        try {
+//            Class.forName("org.postgresql.Driver");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+    private Connection getConnection() throws SQLException {
+        return connectionBuilder.getConnection();
+//        return DriverManager.getConnection(
+//                "jdbc:postgresql://localhost/city_register",
+//                "postgres", "zero01z");
+    }
+
     public PersonResponse checkPerson(PersonRequest personRequest) throws PersonCheckException {
         PersonResponse response = new PersonResponse();
 
@@ -66,11 +85,5 @@ public class PersonCheckDAO {
             throw new PersonCheckException(e);
         }
         return response;
-    }
-
-    private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(
-                "jdbc:postgresql://localhost/city_register",
-                "postgres", "zero01z");
     }
 }

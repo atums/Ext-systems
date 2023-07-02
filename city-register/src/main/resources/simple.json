@@ -1,0 +1,10 @@
+{
+  "registered" : true,
+  "temporal" : false,
+  "address" : {
+    "streetCode" : "2",
+    "building" : "1313",
+    "extension" : "",
+    "apartment" : "13"
+  }
+}

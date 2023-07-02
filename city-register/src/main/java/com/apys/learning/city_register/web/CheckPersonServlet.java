@@ -1,10 +1,9 @@
-package web;
+package com.apys.learning.city_register.web;
 
 import com.apys.learning.city_register.dao.PersonCheckDAO;
 import com.apys.learning.city_register.dao.PoolConnectionBuilder;
 import com.apys.learning.city_register.domain.PersonRequest;
 import com.apys.learning.city_register.domain.PersonResponse;
-import com.apys.learning.city_register.exception.PersonCheckException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -5,6 +5,7 @@ import com.apys.learning.ext.register_offece.domain.Person;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.util.List;
 
 public class PersonDao
@@ -16,7 +17,13 @@ public class PersonDao
         entityManager = factory.createEntityManager();
     }
 
+//    public List<Person> findPersons() {
+//        return entityManager.createNamedQuery("Person.findPerson")
+//                .getResultList();
+//    }
     public List<Person> findPersons() {
-        return entityManager.createQuery("SELECT p FROM Person p").getResultList();
+        Query query = entityManager.createNamedQuery("Person.findPerson");
+        query.setParameter("personId", 1L);
+        return query.getResultList();
     }
 }

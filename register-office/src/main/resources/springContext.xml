@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    Тут value - устанавливаем некое значение полю бина-->
+    <bean id="dao" class="com.apys.learning.ext.register_offece.dao.MarriageDao">
+        <property name="test" value="SIMPLE_NEW"/>
+    </bean>
+
+<!--    Тут с помощью ref мы делаем инжекшен (внедрение - связь бинов)-->
+    <bean id="manager" class="com.apys.learning.ext.register_offece.businnes.MarriageManager">
+        <property name="marriageDao" ref="dao"/>
+    </bean>
+
+    <bean id="controller" class="com.apys.learning.ext.register_offece.rest.MarriageController">
+        <property name="marriageManager" ref="manager"/>
+    </bean>
+
+</beans>

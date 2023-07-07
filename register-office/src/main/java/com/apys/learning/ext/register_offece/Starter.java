@@ -15,6 +15,9 @@ public class Starter {
         );
         //Запрашиваем из этого мира нужный бин
         MarriageController controller = context.getBean("controller", MarriageController.class);
+        //Так как класс у нас один, а не унаслдован от интерфейса можно и не указывать имя Бина
+//        MarriageController controller = context.getBean(MarriageController.class);
+
         //Вызваем нужный метод
         controller.findMarriageCertificate(new MarriageRequest());
     }

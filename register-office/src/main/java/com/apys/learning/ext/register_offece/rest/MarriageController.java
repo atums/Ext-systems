@@ -6,6 +6,7 @@ import com.apys.learning.ext.register_offece.view.MarriageResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 // Помечает как Бин, но говорит, что в этом Бине только функционал (при использовании похож на @Component).
@@ -18,11 +19,10 @@ public class MarriageController {
     // Автоматическое внедрение зависимостей под управлением Spring
     // Используя эту аннотацию на поле - можно избавиться от сеттеров
     @Autowired
+    // Позволяет задать Бину кокретное имя - например для уточнения Бина если он например от чего-то
+    // наследуется или имплементируется. Решение проблемы не одназначности
+    @Qualifier("marriageService")
     private MarriageManager marriageManager;
-
-//    public void setMarriageManager(MarriageManager marriageManager) {
-//        this.marriageManager = marriageManager;
-//    }
 
     public MarriageResponse findMarriageCertificate(MarriageRequest request) {
         LOGGER.info("findMarriageCertificate called");

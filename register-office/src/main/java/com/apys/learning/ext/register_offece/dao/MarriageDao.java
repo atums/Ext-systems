@@ -25,10 +25,10 @@ public class MarriageDao {
         this.test = test;
     }
 
-    public MarriageDao() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistence");
-        em = factory.createEntityManager();
-    }
+//    public MarriageDao() {
+//        EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistence");
+//        em = factory.createEntityManager();
+//    }
 
     public MarriageCertificate findMarriageCertificate(MarriageRequest request) {
         LOGGER.info("findMarriageCertificate called :{}", test);

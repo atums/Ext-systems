@@ -1,35 +1,31 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        https://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/data/jpa
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 <!--    tx - настройка транзакций в Spring-->
-
-<!--&lt;!&ndash;    Тут value - устанавливаем некое значение полю бина&ndash;&gt;-->
-<!--    <bean id="dao" class="com.apys.learning.ext.register_offece.dao.MarriageDao">-->
-<!--        <property name="test" value="SIMPLE_NEW"/>-->
-<!--    </bean>-->
-<!--&lt;!&ndash;    Тут с помощью ref мы делаем инжекшен (внедрение - связь бинов)&ndash;&gt;-->
-<!--    <bean id="manager" class="com.apys.learning.ext.register_offece.businnes.MarriageManager">-->
-<!--        <property name="marriageDao" ref="dao"/>-->
-<!--    </bean>-->
-<!--    <bean id="controller" class="com.apys.learning.ext.register_offece.rest.MarriageController">-->
-<!--        <property name="marriageManager" ref="manager"/>-->
-<!--    </bean>-->
-
+<!--    data/jpa - внедрение Spring Data JPA-->
 
 <!--    Сканирует указанную директорию на наличие файлов с аннотациями и делает из них бины и внедрения-->
     <context:component-scan base-package="com.apys.learning.ext.register_offece"/>
 
+<!--    Конфигурация Spring Data Jpa заставляет проверять все интерфейсы @Repository и
+        наследуются от JpaRepository-->
+    <jpa:repositories base-package="com.apys.learning.ext.register_offece"
+                      entity-manager-factory-ref="emf"
+                      transaction-manager-ref="txManager"/>
+
 <!--    Говорим TransactionManager, что будем указывать ему где его нужно вклинивать в код с помощью аннотаций-->
     <tx:annotation-driven transaction-manager="txManager" />
-
 <!--    Настройки для подключения Spring  к DB-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
@@ -37,7 +33,6 @@
         <property name="username" value="postgres"/>
         <property name="password" value="zero01z"/>
     </bean>
-
     <bean name="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
@@ -55,10 +50,8 @@
             </props>
         </property>
     </bean>
-
 <!--    Кофигурация TransactionManager-->
     <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="emf" />
     </bean>
-
 </beans>

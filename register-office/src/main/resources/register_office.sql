@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS marriage_certificate_id;
+DROP TABLE IF EXISTS ro_marriage_certificate;
 DROP TABLE IF EXISTS ro_birth_certificate;
 DROP TABLE IF EXISTS ro_passport;
 DROP TABLE IF EXISTS ro_person;

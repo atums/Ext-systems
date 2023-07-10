@@ -1,7 +1,5 @@
 package com.apys.learning.ext.register_offece;
 
-import com.apys.learning.ext.register_offece.rest.MarriageController;
-import com.apys.learning.ext.register_offece.view.MarriageRequest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,11 +12,11 @@ public class Starter {
                 new String[] {"springContext.xml"}
         );
         //Запрашиваем из этого мира нужный бин
-        MarriageController controller = context.getBean("controller", MarriageController.class);
+//        MarriageController controller = context.getBean("controller", MarriageController.class);
         //Так как класс у нас один, а не унаслдован от интерфейса можно и не указывать имя Бина
 //        MarriageController controller = context.getBean(MarriageController.class);
 
         //Вызваем нужный метод
-        controller.findMarriageCertificate(new MarriageRequest());
+//        controller.findMarriageCertificate(new MarriageRequest());
     }
 }

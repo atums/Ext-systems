@@ -54,12 +54,43 @@ public class MarriageManager {
         // Spring Data (там очень много всяких медотов для работы с DB)
         marriageDao.saveAndFlush(mc);
 
-        // Этот метод тоже предоставляется Spring Data т.е. Spring Data на основе наших классов
+        // Тут вызываем автоматически генерируемый Spring Data SELECT (описан в MarriageDao)
+        List<MarriageCertificate> byNumber = marriageDao.findByNumber("123456");
+
+        byNumber.forEach(bN -> {
+            LOGGER.info("Marriage Certificate from Number :{}", bN.getMarriageCertificateId());
+        });
+        LOGGER.info("----->>>>>");
+        // Тут вызываем автоматически генерируемый Spring Data SELECT (описан в MarriageDao) который ищет
+        // подстроку в Number
+        List<MarriageCertificate> byNumber2 = marriageDao.findByNumberContaining("76");
+
+        byNumber2.forEach(bN -> {
+            LOGGER.info("Marriage Certificate NumberContaining :{}", bN.getMarriageCertificateId());
+        });
+        LOGGER.info("----->>>>>");
+        // Тут вызываем заранее написанный NamedQuery  SELECT (описан в MarriageCertificate) который ищет
+        // по Number
+        List<MarriageCertificate> byNumber3 = marriageDao.findByNum("98765");
+
+        byNumber3.forEach(bN -> {
+            LOGGER.info("Marriage Certificate NamedQuery :{}", bN.getMarriageCertificateId());
+        });
+
+        LOGGER.info("----->>>>>");
+        // Тут вызываем заранее написанный  SELECT прямо из Аннотации (описан в MarriageDao) который ищет
+        // по Number
+        List<MarriageCertificate> byNumber4 = marriageDao.findBySomething("01928");
+
+        byNumber4.forEach(bN -> {
+            LOGGER.info("Marriage Certificate Annotation :{}", bN.getMarriageCertificateId());
+        });
+
+        // Этотb методs тоже предоставляется Spring Data т.е. Spring Data на основе наших классов
         // MarriageCertificate (и входящих в него Person и потомков) сам создает DAO для работы
         // с этими классами в DB
-        marriageDao.findAll();
-
-        marriageDao.findById(1L);
+//        marriageDao.findAll();
+//        marriageDao.findById(1L);
 
         return new MarriageResponse();
     }
@@ -68,7 +99,7 @@ public class MarriageManager {
         MarriageCertificate mc = new MarriageCertificate();
 
         mc.setIssueDate(LocalDate.now());
-        mc.setNumber("123456");
+        mc.setNumber("01928");
         mc.setActive(true);
 
         List<Person> persons = personDao.findPersons();

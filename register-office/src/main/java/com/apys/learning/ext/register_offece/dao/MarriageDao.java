@@ -11,7 +11,8 @@ import java.util.List;
 
 @Repository
 // Первый аргумент дженерика это тот класс скоторым мы будем работать, а второй это тип Id этого объекта
-// Фактически Spring Data JPA сгенерирует готовые классы. Все необходимые методы есть у родительских классов
+// Фактически Spring Data JPA сгенерирует готовые классы. Все необходимые методы есть у родительских классов.
+//Либо можно воспользоваться @NamedQuery или @Query на аннотации
 public interface MarriageDao extends JpaRepository<MarriageCertificate, Long> {
 
     //findBy... - Spring Data сгенерирует (по названию метода) SELECT по интересующему параметру

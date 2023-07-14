@@ -4,7 +4,6 @@ import com.apys.learning.ext.student.rest.StudentController;
 import com.apys.learning.ext.student.view.StudentRequest;
 import com.apys.learning.ext.student.view.StudentResponse;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

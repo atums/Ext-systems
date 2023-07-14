@@ -33,6 +33,19 @@
     </build>
 
     <dependencies>
+<!--        Подключение Java EE Servlet-->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+<!--        Подключение jstl - библиотека описания тегов для JSP страниц-->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
 <!--        Подключение Hibernate/JPA-->
         <dependency>
             <groupId>org.hibernate</groupId>

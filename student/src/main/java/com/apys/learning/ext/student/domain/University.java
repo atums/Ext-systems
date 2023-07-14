@@ -14,7 +14,6 @@ public class University {
     private String universityName;
     // mappedBy по какому полю Faculty будет искатся соответствие
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "university")
-//    @JoinColumn(name = "faculty_id")
     private List<Faculty> faculties;
 
     public Long getUniversityId() {

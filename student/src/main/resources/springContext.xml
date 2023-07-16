@@ -25,7 +25,7 @@
                       transaction-manager-ref="txManager"/>
 
 <!--    Говорим TransactionManager, что будем указывать ему где его нужно вклинивать в код с помощью аннотаций-->
-    <tx:annotation-driven transaction-manager="txManager" />
+    <tx:annotation-driven transaction-manager="txManager"/>
 <!--    Настройки для подключения Spring  к DB-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
@@ -54,6 +54,13 @@
     </bean>
 <!--    Кофигурация TransactionManager-->
     <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="emf" />
+        <property name="entityManagerFactory" ref="emf"/>
+    </bean>
+<!--    Подключение Маппера для Spring MVC-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+<!--    Подключение ВьюРезолвера Spring MVC для JSP-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
 </beans>

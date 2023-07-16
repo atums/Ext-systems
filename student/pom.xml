@@ -80,6 +80,12 @@
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
+<!--        Подключение Spring MVC-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 <!--        Это dependency - для работы Spring c JUnit-->
         <dependency>
             <groupId>org.springframework</groupId>

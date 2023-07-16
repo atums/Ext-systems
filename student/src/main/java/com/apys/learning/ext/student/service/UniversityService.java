@@ -42,7 +42,6 @@ public class UniversityService
         Hibernate.initialize(u.getFaculties());
         return u;
     }
-
     @Transactional(readOnly = true)
     public Faculty getFaculty(Long facultyId) {
         Optional<Faculty> fop = facultyRepository.findById(facultyId);

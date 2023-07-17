@@ -1,20 +1,24 @@
 package com.apys.learning.ext.student.view;
 
-import com.apys.learning.ext.student.domain.LocalDateAdapter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.time.LocalDate;
 
 public class StudentRequest {
     private String firstName;
     private String lastName;
     private String middleName;
-    // Позволяет вызывать класс-адаптер для преобразования Даты в JSON
-    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
+    // позволяет преобразовать определенные данные в строку (приведение к JSON)
+    @JsonSerialize(converter = LocalDateStringConverter.class)
+    //Позволяет переводить строку (JSON) в определенный тип данных
+    @JsonDeserialize(converter = StringLocalDateConverter.class)
     private LocalDate dateOfBirth;
     private String passportSerial;
     private String passportNumber;
-    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
+    @JsonSerialize(converter = LocalDateStringConverter.class)
+    @JsonDeserialize(converter = StringLocalDateConverter.class)
     private LocalDate passportDate;
 
     public String getFirstName() {
